@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class CarreraService {
@@ -17,7 +18,8 @@ public class CarreraService {
     }
 
     public Carrera findByCodigo(String codigo) {
-        return carreraRepository.findById(codigo).orElse(null);
+        return carreraRepository.findById(codigo)
+                .orElseThrow(() -> new NoSuchElementException("No existe esa carrera"));
     }
 
     public Carrera save(Carrera carrera) {
