@@ -27,6 +27,10 @@ public class CarreraService {
     }
 
     public void deleteByCodigo(String codigo) {
+        Carrera carrera = carreraRepository.findById(codigo);
+        if (carrera == null) {
+            throw new NoSuchElementException("No existe esa carrera")
+        }
         carreraRepository.deleteById(codigo);
     }
 }
